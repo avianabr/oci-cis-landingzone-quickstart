@@ -26,7 +26,7 @@ locals {
       compartment_id  = null
       name            = replace("${vcn.name}-${s}-subnet", "-vcn", "")
       defined_tags    = null
-      cidr            = cidrsubnet(vcn.cidr, 4, index(local.spoke_subnet_names, s))
+      cidr            = cidrsubnet(vcn.cidr, 2, index(local.spoke_subnet_names, s))
       dns_label       = s
       private         = length(var.dmz_vcn_cidr) > 0 || var.no_internet_access ? true : (index(local.spoke_subnet_names, s) == 0 ? false : true)
       dhcp_options_id = null
